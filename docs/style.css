@@ -122,6 +122,14 @@ body {
   padding-right: 40px !important;
 }
 
+.input-with-action:has(.secondary-action) input {
+  padding-right: 70px !important;
+}
+
+.secondary-action {
+  right: 35px;
+}
+
 .form-group input:focus {
   border-color: var(--aws-blue);
   box-shadow: 0 0 0 1px var(--aws-blue);
@@ -213,6 +221,10 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+#toggle-password,
+#copy-ssid-to-label {
+    right: 30px;
 }
 
 /* Preview Area */

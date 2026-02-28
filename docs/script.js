@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const passwordGroup = document.getElementById('password-group');
     const togglePasswordBtn = document.getElementById('toggle-password');
     const copySsidToLabelBtn = document.getElementById('copy-ssid-to-label');
+    const clearSsidBtn = document.getElementById('clear-ssid');
+    const clearPasswordBtn = document.getElementById('clear-password');
+    const clearLabelBtn = document.getElementById('clear-label');
 
     let qrcode = null;
     let labelManuallyEdited = false;
@@ -207,6 +210,28 @@ document.addEventListener('DOMContentLoaded', () => {
     labelInput.addEventListener('input', () => {
         labelManuallyEdited = (labelInput.value.trim() !== '');
         generateQR();
+    });
+
+    clearSsidBtn.addEventListener('click', () => {
+        ssidInput.value = '';
+        if (!labelManuallyEdited) {
+            labelInput.value = '';
+        }
+        generateQR();
+        ssidInput.focus();
+    });
+
+    clearPasswordBtn.addEventListener('click', () => {
+        passwordInput.value = '';
+        generateQR();
+        passwordInput.focus();
+    });
+
+    clearLabelBtn.addEventListener('click', () => {
+        labelInput.value = '';
+        labelManuallyEdited = false;
+        generateQR();
+        labelInput.focus();
     });
 
     // Initial Load
