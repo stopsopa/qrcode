@@ -27,19 +27,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- State Management ---
 
     function updateUrl() {
-        const params = new URLSearchParams();
         const ssid = ssidInput.value.trim();
         const password = passwordInput.value;
         const security = getEncryptionValue();
         const label = labelInput.value.trim();
 
+        const params = new URLSearchParams();
         if (ssid) params.set('s', ssid);
-        if (password) params.set('p', password);
+        if (security !== 'nopass' && password) params.set('p', password);
         if (security !== 'WPA') params.set('t', security); // Only set if not default
         if (label) params.set('l', label);
 
-        const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + (params.toString() ? '?' + params.toString() : '');
-        window.history.replaceState({ path: newUrl }, '', newUrl);
+        const paramsString = params.toString();
+        const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + (paramsString ? '?' + paramsString : '');
+        
+        // Only update if the URL actually changed to avoid unnecessary history entries
+        if (window.location.href !== newUrl) {
+            window.history.replaceState({ path: newUrl }, '', newUrl);
+        }
     }
 
     function loadStateFromUrl() {
@@ -71,6 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- QR Generation ---
 
     function generateQR() {
+        updateUrl();
+
         const ssid = ssidInput.value.trim();
         const password = passwordInput.value;
         const security = getEncryptionValue();
@@ -103,8 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
             colorLight: "#ffffff",
             correctLevel: QRCode.CorrectLevel.H
         });
-
-        updateUrl();
     }
 
     // --- Actions ---
