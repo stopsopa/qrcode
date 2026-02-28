@@ -118,9 +118,39 @@ body {
   outline: none;
 }
 
+.input-with-action input {
+  padding-right: 40px !important;
+}
+
 .form-group input:focus {
   border-color: var(--aws-blue);
   box-shadow: 0 0 0 1px var(--aws-blue);
+}
+
+.input-with-action {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.field-action-btn {
+  position: absolute;
+  right: 5px;
+  background: transparent;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  color: var(--aws-text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  transition: 0.2s;
+}
+
+.field-action-btn:hover {
+  color: var(--aws-blue);
+  background: rgba(0, 115, 187, 0.05);
 }
 
 .help-text {
