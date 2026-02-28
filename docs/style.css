@@ -26,112 +26,28 @@ body {
     background-color: var(--aws-bg);
     color: var(--aws-text);
     line-height: 1.5;
-    height: 100vh;
-    overflow: hidden;
-}
-
-/* Navigation */
-.aws-nav {
-    height: var(--aws-nav-height);
-    background-color: var(--aws-dark);
+    min-height: 100vh;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 0 20px;
-    color: white;
-    z-index: 100;
-    position: relative;
-}
-
-.nav-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.nav-title {
-    font-weight: 700;
-    font-size: 16px;
-    letter-spacing: 0.5px;
-}
-
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    font-size: 14px;
-}
-
-.nav-user {
-    color: #aab7b8;
+    padding: 20px;
 }
 
 /* Layout */
-.dashboard-layout {
-    display: flex;
-    height: calc(100vh - var(--aws-nav-height));
-}
-
-.aws-sidebar {
-    width: var(--aws-sidebar-width);
-    background-color: var(--aws-white);
-    border-right: 1px solid var(--aws-border);
-    padding-top: 20px;
-}
-
-.aws-sidebar ul {
-    list-style: none;
-}
-
-.aws-sidebar li a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 20px;
-    color: var(--aws-text-light);
-    text-decoration: none;
-    font-size: 14px;
-    transition: background 0.2s;
-}
-
-.aws-sidebar li.active a {
-    background-color: #f1faff;
-    color: var(--aws-blue);
-    border-left: 3px solid var(--aws-blue);
-    padding-left: 17px;
-}
-
-.aws-sidebar li a:hover:not(.active) {
-    background-color: #f2f3f3;
-    color: var(--aws-text);
+.centered-layout {
+    width: 100%;
+    max-width: 1200px;
 }
 
 .aws-main {
     flex: 1;
-    overflow-y: auto;
-    padding: 30px 40px;
+    padding: 0;
 }
 
 /* Content Header */
 .content-header {
     margin-bottom: 30px;
-}
-
-.breadcrumb {
-    font-size: 11px;
-    color: var(--aws-text-light);
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    display: flex;
-    gap: 5px;
-}
-
-.breadcrumb .separator {
-    color: #d5dbdb;
-}
-
-.breadcrumb .current {
-    font-weight: 700;
+    text-align: center;
 }
 
 .aws-main h1 {

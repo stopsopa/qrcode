@@ -29,16 +29,13 @@ We will use the `docs/` folder to host the application. GitHub Pages allows serv
 └── PLAN.md
 ```
 
-## UI/UX Design (AWS Dashboard Style)
-- **Top Navigation**: A dark, sticky bar at the top, mimicking the AWS console's navigation (logo on left, account/icons on right).
-- **Layout**: A responsive dashboard layout.
-    - **Sidebar**: A navigation/control sidebar (e.g., list of WiFi configurations or simple logo/links).
-    - **Main Content**: A gray-toned workspace with white cards for inputs and the QR display.
+## UI/UX Design (AWS Dashboard Style - Centered)
+- **Layout**: A clean, centered professional workspace. Everything is focused on the core task of generating the QR code.
 - **Typography**: Amazon Ember (if possible) or modern sans-serif fonts (Inter, Roboto).
 - **Components**:
     - **Form Inputs**: Standard AWS Cloudscape-style inputs with clear labels and validation states.
     - **Radio Buttons**: AWS-style button groups or radio selectors.
-    - **Cards**: The QR code and form will be housed in professional, shadow-boxed dashboard cards.
+    - **Cards**: The QR code and form are housed in professional, shadow-boxed cards, centered on the page.
     - **Status Indicators**: AWS-style "Success" or "Info" alerts for feedback.
 
 ## Functional Requirements
@@ -62,7 +59,7 @@ We will use the `docs/` folder to host the application. GitHub Pages allows serv
 
 ## Implementation Steps
 1. **Setup Development Environment**: Initialize the `docs/` folder.
-2. **Design the Core HTML/CSS**: Implement the AWS Dashboard-themed layout (Top Nav, Sidebar, Main Area) and responsive form cards.
+2. **Design the Core HTML/CSS**: Implement the centered AWS Dashboard-themed layout and responsive form cards.
 3. **Integrate QRCode.js**: Download the library from a CDN or repository and store it locally in `docs/lib/` to ensure the app works offline and remains self-contained.
 4. **JavaScript Logic**:
     - Create a `state` object to handle input values.
