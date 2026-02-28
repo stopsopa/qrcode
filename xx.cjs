@@ -44,7 +44,7 @@ EEE
       confirm: false,
     },
 
-    [`coverage server`]: {
+    [`server`]: {
       command: `
 PORT="4286"
 cat <<EEE
