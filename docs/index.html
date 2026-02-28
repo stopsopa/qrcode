@@ -1,106 +1,148 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <title>WiFi QR Code Generator | AWS Style</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/gh/MarketingPipeline/GitHub-Ribbon-Web-Component/dist/github-ribbon-wc.min.js" defer></script>
-</head>
-<body class="aws-theme">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="aws-theme">
     <div class="centered-layout">
-        <!-- Main Content Area -->
-        <main class="aws-main">
-            <div class="content-header">
-                <h1>WiFi QR Code Generator</h1>
-                <p class="description">Create printable QR code for your WiFi network. All processing happens in your browser.</p>
+      <!-- Main Content Area -->
+      <main class="aws-main">
+        <div class="content-header">
+          <h1>WiFi QR Code Generator</h1>
+          <p class="description">
+            Create printable QR code for your WiFi network. All processing
+            happens in your browser.
+          </p>
+        </div>
+
+        <div class="grid-container">
+          <!-- Configuration Card -->
+          <section class="aws-card">
+            <div class="card-header">
+              <h2>Network Configuration</h2>
             </div>
+            <div class="card-content">
+              <form id="wifi-form">
+                <div class="form-group">
+                  <label for="ssid">Network Name (SSID)</label>
+                  <input
+                    type="text"
+                    id="ssid"
+                    name="ssid"
+                    placeholder="Network Name (SSID)"
+                    required
+                    autocomplete="off"
+                  />
+                  <span class="help-text"
+                    >The name of your wireless network.</span
+                  >
+                </div>
 
-            <div class="grid-container">
-                <!-- Configuration Card -->
-                <section class="aws-card">
-                    <div class="card-header">
-                        <h2>Network Configuration</h2>
-                    </div>
-                    <div class="card-content">
-                        <form id="wifi-form">
-                            <div class="form-group">
-                                <label for="ssid">Network Name (SSID)</label>
-                                <input type="text" id="ssid" name="ssid" placeholder="e.g. MyHomeWiFi" required autocomplete="off">
-                                <span class="help-text">The name of your wireless network.</span>
-                            </div>
+                <div class="form-group">
+                  <label>Security Type</label>
+                  <div class="radio-group">
+                    <label class="radio-label">
+                      <input
+                        type="radio"
+                        name="encryption"
+                        value="WPA"
+                        checked
+                      />
+                      <span class="radio-custom"></span>
+                      <span class="label"> WPA/WPA2/WPA3 </span>
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="encryption" value="WEP" />
+                      <span class="radio-custom"></span>
+                      <span class="label"> WEP </span>
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="encryption" value="nopass" />
+                      <span class="radio-custom"></span>
+                      <span class="label"> None </span>
+                    </label>
+                  </div>
+                </div>
 
-                            <div class="form-group">
-                                <label>Security Type</label>
-                                <div class="radio-group">
-                                    <label class="radio-label">
-                                        <input type="radio" name="encryption" value="WPA" checked>
-                                        <span class="radio-custom"></span>
-                                        <span class="label">
-                                            WPA/WPA2/WPA3
-                                        </span>
-                                    </label>
-                                    <label class="radio-label">
-                                        <input type="radio" name="encryption" value="WEP">
-                                        <span class="radio-custom"></span>
-                                        <span class="label">
-                                            WEP
-                                        </span>
-                                    </label>
-                                    <label class="radio-label">
-                                        <input type="radio" name="encryption" value="nopass">
-                                        <span class="radio-custom"></span>
-                                        <span class="label">
-                                            None
-                                        </span>
-                                    </label>
-                                </div>
-                            </div>
+                <div class="form-group" id="password-group">
+                  <label for="password">Password</label>
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                    autocomplete="new-password"
+                  />
+                  <span class="help-text"
+                    >Enter the network password. Browser won't save this.</span
+                  >
+                </div>
 
-                            <div class="form-group" id="password-group">
-                                <label for="password">Password</label>
-                                <input type="password" id="password" name="password" placeholder="WiFi Password" autocomplete="new-password">
-                                <span class="help-text">Enter the network password. Browser won't save this.</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="label">Custom Label (Optional)</label>
-                                <input type="text" id="label" name="label" placeholder="e.g. Kitchen WiFi" autocomplete="off">
-                                <span class="help-text">This label will be printed below the QR code.</span>
-                            </div>
-                        </form>
-                    </div>
-                </section>
-
-                <!-- Preview Card -->
-                <section class="aws-card preview-card">
-                    <div class="card-header">
-                        <h2>QR Code Preview</h2>
-                    </div>
-                    <div class="card-content preview-container">
-                        <div id="qr-wrapper">
-                            <div id="qrcode"></div>
-                            <div id="label-preview"></div>
-                        </div>
-                        
-                        <div id="placeholder-text">
-                            Enter network details to generate QR code
-                        </div>
-
-                        <div class="action-buttons">
-                            <button id="copy-btn" class="aws-btn secondary">
-                                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M4 4h9v12H4V4zm-2 2h1v10H2V6zm10-4h1v2h-1V2zM8 0h1v2H8V0zM4 2h1v2H4V2z"/></svg>
-                                Copy Link
-                            </button>
-                            <button id="download-btn" class="aws-btn primary">
-                                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 12l-4-4h2.5V0h3v8H12L8 12zm-8 2h16v2H0v-2z"/></svg>
-                                Download PNG
-                            </button>
-                        </div>
-                    </div>
-                </section>
+                <div class="form-group">
+                  <label for="label">Custom Label (Optional)</label>
+                  <input
+                    type="text"
+                    id="label"
+                    name="label"
+                    placeholder="Custom Label (Optional)"
+                    autocomplete="off"
+                  />
+                  <span class="help-text"
+                    >This label will be printed below the QR code.</span
+                  >
+                </div>
+              </form>
             </div>
-        </main>
+          </section>
+
+          <!-- Preview Card -->
+          <section class="aws-card preview-card">
+            <div class="card-header">
+              <h2>QR Code Preview</h2>
+            </div>
+            <div class="card-content preview-container">
+              <div id="qr-wrapper">
+                <div id="qrcode"></div>
+                <div id="label-preview"></div>
+              </div>
+
+              <div id="placeholder-text">
+                Enter network details to generate QR code
+              </div>
+
+              <div class="action-buttons">
+                <button id="copy-btn" class="aws-btn secondary">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M4 4h9v12H4V4zm-2 2h1v10H2V6zm10-4h1v2h-1V2zM8 0h1v2H8V0zM4 2h1v2H4V2z"
+                    />
+                  </svg>
+                  Copy Link
+                </button>
+                <button id="download-btn" class="aws-btn primary">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                  >
+                    <path d="M8 12l-4-4h2.5V0h3v8H12L8 12zm-8 2h16v2H0v-2z" />
+                  </svg>
+                  Download PNG
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
     </div>
 
     <!-- Notifications -->
@@ -108,6 +150,5 @@
 
     <script src="lib/qrcode.min.js"></script>
     <script src="script.js"></script>
-    <github-ribbon link="https://github.com/stopsopa/qrcode" type="right" color="#ff9900">Fork me on GitHub</github-ribbon>
-</body>
+  </body>
 </html>
