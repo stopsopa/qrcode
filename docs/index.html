@@ -13,7 +13,9 @@
       }
       gtag("js", new Date());
 
-      gtag("config", "G-3LD9N8MSSW");
+      gtag("config", "G-3LD9N8MSSW", {
+        page_location: location.origin + location.pathname, // to don't track get parameters, I'm interested just in visits number and location
+      });
     </script>
     <meta charset="UTF-8" />
     <meta
